@@ -94,7 +94,7 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li className="text-lg flex">
-            <ShoppingBagIcon className=" h-6 w-6 text-green-500 hover:text-green-700 transition-colors" />{" "}
+            <ShoppingBagIcon className=" h-6 w-6 text-green-500 hover:text-green-700 transition-colors cursor-pointer" />{" "}
             {context.count}
           </li>
         </ul>
