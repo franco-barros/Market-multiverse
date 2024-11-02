@@ -9,7 +9,7 @@ const ProductDetail = () => {
     <aside
       className={`${
         context.isProductDetailOpen ? "flex" : "hidden"
-      } product-detail flex-col fixed right-0 border border-black rounded-lg bg-white max-w-lg w-full md:w-[35%] shadow-lg transform transition-all duration-500 ease-out ${
+      } product-detail flex-col fixed right-0 border border-black rounded-lg bg-white max-w-lg w-full md:w-[35%] shadow-lg transform transition-all duration-500 ease-out overflow-y-scroll ${
         context.isProductDetailOpen
           ? "translate-x-0 scale-100 opacity-100"
           : "translate-x-full scale-95 opacity-0"

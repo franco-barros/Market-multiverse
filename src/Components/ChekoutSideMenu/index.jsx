@@ -1,11 +1,34 @@
 import { useContext } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { Link } from "react-router-dom";
 import { ShoppinCardContext } from "../../Context";
 import "./styles.css";
 import OrderCard from "../../Components/OrderCard";
+import { useCallback } from "react";
+import { totalPrice } from "../../Utils";
 const CheckoutSideMenu = () => {
   const context = useContext(ShoppinCardContext);
+  const handleDelete = useCallback(
+    (id) => {
+      const filteredProducts = context.cartProducts.filter(
+        (product) => product.id !== id
+      );
+      context.setCartProducts(filteredProducts);
+    },
+    [context.cartProducts]
+  );
+  const handleCheckout = () => {
+    const orderToAdd = {
+      data: "01.02.24",
+      products: context.cartProducts,
+      totalProducts: context.cartProducts.length,
+      totalPrice: totalPrice(context.cartProducts),
+    };
 
+    context.setOrder([...context.order, orderToAdd]);
+    context.setCartProducts([]);
+    context.setCount(0);
+  };
   return (
     <aside
       className={`${
@@ -25,15 +48,33 @@ const CheckoutSideMenu = () => {
           />
         </div>
       </div>
-      <div className="px-6">
+      <div className="px-6 overflow-y-auto flex-1">
         {context.cartProducts.map((product) => (
           <OrderCard
             key={product.id}
+            id={product.id}
             title={product.title}
             imageUrl={product.images}
             price={product.price}
+            handleDelete={handleDelete}
           />
         ))}
+      </div>
+      <div className="px-6 py-4 border-t">
+        <p className="flex justify-between items-center text-gray-800 mb-4">
+          <span className="font-light text-lg">Total:</span>
+          <span className="font-semibold text-2xl text-black-700">
+            ${totalPrice(context.cartProducts)}
+          </span>
+        </p>
+        <Link to="/MyOrders/last">
+          <button
+            onClick={() => handleCheckout()}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-300 ease-in-out shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Comprar ahora
+          </button>
+        </Link>
       </div>
     </aside>
   );

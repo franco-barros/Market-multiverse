@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ShoppinCardContext } from "../../Context";
-import { PlusIcon } from "@heroicons/react/24/solid";
+import { PlusIcon, CheckIcon } from "@heroicons/react/24/solid";
 
 const Card = (data) => {
   const context = useContext(ShoppinCardContext);
@@ -17,6 +17,28 @@ const Card = (data) => {
     context.openCheckoutSideMenu();
     context.closeProductDetail();
   };
+
+  const renderIcon = (id) => {
+    const isInCart =
+      context.cartProducts.filter((product) => product.id === id).length > 0;
+
+    if (isInCart) {
+      return (
+        <div className="absolute top-0 right-0 flex justify-center items-center w-8 h-8 sm:w-7 sm:h-7 md:w-6 md:h-6 lg:w-8 lg:h-8 bg-green-500 rounded-full m-2 p-1 shadow-lg transform transition-transform duration-200 hover:scale-110">
+          <CheckIcon className="w-full h-full text-white" />
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className="absolute top-0 right-0 flex justify-center items-center w-8 h-8 sm:w-7 sm:h-7 md:w-6 md:h-6 lg:w-8 lg:h-8 bg-white rounded-full m-2 p-1 shadow-lg cursor-pointer transform transition-transform duration-200 hover:scale-110 hover:bg-green-200"
+          onClick={(event) => addProductsToCart(event, data.data)}
+        >
+          <PlusIcon className="w-full h-full " />
+        </div>
+      );
+    }
+  };
   return (
     <div
       className="bg-white cursor-pointer w-56 h-60 rounded-lg"
@@ -30,13 +52,9 @@ const Card = (data) => {
           className=" w-full h-full object-cover rounded-lg"
           src={data.data.images?.[0]}
           alt={data.data.title}
+          loading="lazy"
         />
-        <div
-          className="absolute top-0 right-0 flex justify-center items-center w-6 h-6 bg-white rounded-full m-2 p-0.5"
-          onClick={(event) => addProductsToCart(event, data.data)}
-        >
-          <PlusIcon className="w-6 h-6 text-blue-500 hover:text-blue-700 transition-colors" />
-        </div>
+        {renderIcon(data.data.id)}
       </figure>
       <p className="flex justify-between">
         <span className="text-sm font-light">{data.data.title}</span>

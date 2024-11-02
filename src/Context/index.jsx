@@ -19,6 +19,8 @@ export const ShoppinCardProvider = ({ children }) => {
   const [productToShow, setProductToShow] = useState({});
   //Shopping  Add products to cart
   const [cartProducts, setCartProducts] = useState([]);
+  //Shopping cart - Order
+  const [order, setOrder] = useState([]);
   return (
     <ShoppinCardContext.Provider
       value={{
@@ -34,6 +36,8 @@ export const ShoppinCardProvider = ({ children }) => {
         isCheckoutSideMenuOpen,
         openCheckoutSideMenu,
         closeCheckoutSideMenu,
+        order,
+        setOrder,
       }}
     >
       {children}
