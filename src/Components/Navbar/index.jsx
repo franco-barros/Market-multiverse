@@ -16,6 +16,7 @@ const Navbar = () => {
           </li>
           <li className="hidden md:inline">
             <NavLink
+              onClick={() => context.setSearchByCategory()}
               to="/"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
@@ -24,6 +25,7 @@ const Navbar = () => {
           </li>
           <li className="hidden md:inline">
             <NavLink
+              onClick={() => context.setSearchByCategory("clothes")}
               to="/clothes"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
@@ -32,7 +34,8 @@ const Navbar = () => {
           </li>
           <li className="hidden md:inline">
             <NavLink
-              to="/electronic"
+              onClick={() => context.setSearchByCategory("electronics")}
+              to="/electronics"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
               Electronic
@@ -40,14 +43,16 @@ const Navbar = () => {
           </li>
           <li className="hidden md:inline">
             <NavLink
-              to="/furniture"
+              onClick={() => context.setSearchByCategory("furnitures")}
+              to="/furnitures"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              Furniture
+              Furnitures
             </NavLink>
           </li>
           <li className="hidden md:inline">
             <NavLink
+              onClick={() => context.setSearchByCategory("toys")}
               to="/toys"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
@@ -56,6 +61,7 @@ const Navbar = () => {
           </li>
           <li className="hidden md:inline">
             <NavLink
+              onClick={() => context.setSearchByCategory("others")}
               to="/others"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
@@ -95,7 +101,7 @@ const Navbar = () => {
           </li>
           <li className="text-lg flex">
             <ShoppingBagIcon className=" h-6 w-6 text-green-500 hover:text-green-700 transition-colors cursor-pointer" />{" "}
-            {context.count}
+            {context.cartProducts.length}
           </li>
         </ul>
       </div>

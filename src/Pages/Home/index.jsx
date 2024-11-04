@@ -7,16 +7,12 @@ function Home() {
   const context = useContext(ShoppinCardContext);
 
   const renderView = () => {
-    if (context.searchByTitle?.length > 0) {
-      if (context.filteredItems?.length > 0) {
-        return context.filteredItems.map((item) => (
-          <Card key={item.id} data={item} />
-        ));
-      } else {
-        return <div>No hay coincidencias</div>;
-      }
+    if (context.filteredItems?.length > 0) {
+      return context.filteredItems.map((item) => (
+        <Card key={item.id} data={item} />
+      ));
     } else {
-      return context.items?.map((item) => <Card key={item.id} data={item} />);
+      return <div>No hay coincidencias :(</div>;
     }
   };
 
@@ -26,6 +22,8 @@ function Home() {
         <h1 className="font-semibold text-xl">Exclusive Products</h1>
       </div>
       <input
+        id="searchProduct"
+        name="searchProduct"
         className="rounded-lg border border-black w-80 p-4 mb-4 focus:outline-none"
         type="text"
         placeholder="Search a product"
