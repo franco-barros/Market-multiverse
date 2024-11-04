@@ -71,7 +71,7 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/orders"
+              to="/my-orders"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
               My Orders
@@ -79,7 +79,7 @@ const Navbar = () => {
           </li>
           <li className="hidden sm:inline">
             <NavLink
-              to="/account"
+              to="/my-account"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
               My Account
@@ -87,7 +87,7 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/signin"
+              to="/sign-in"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
               Sign In

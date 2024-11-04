@@ -1,6 +1,6 @@
 import { Children, createContext, useState } from "react";
 export const ShoppinCardContext = createContext();
-
+import { useEffect } from "react";
 export const ShoppinCardProvider = ({ children }) => {
   //Shopping Card - Increment quantity
   const [count, setCount] = useState(0);
@@ -21,6 +21,30 @@ export const ShoppinCardProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
   //Shopping cart - Order
   const [order, setOrder] = useState([]);
+  //Get products
+  const [items, setItems] = useState(null);
+  useEffect(() => {
+    fetch("https://api.escuelajs.co/api/v1/products")
+      .then((response) => response.json())
+      .then((data) => setItems(data));
+  }, []);
+
+  //Get products By title
+  const [searchByTitle, setSearchByTitle] = useState(null);
+  const [filteredItems, setFilteredItems] = useState(null);
+
+  const filteredItemsByTitle = (items, searchByTitle) => {
+    return items?.filter((item) =>
+      item.title.toLowerCase().includes(searchByTitle.toLowerCase())
+    );
+  };
+  useEffect(() => {
+    if (searchByTitle) {
+      setFilteredItems(filteredItemsByTitle(items, searchByTitle));
+    } else {
+      setFilteredItems(items);
+    }
+  }, [items, searchByTitle]);
   return (
     <ShoppinCardContext.Provider
       value={{
@@ -38,6 +62,11 @@ export const ShoppinCardProvider = ({ children }) => {
         closeCheckoutSideMenu,
         order,
         setOrder,
+        items,
+        setItems,
+        searchByTitle,
+        setSearchByTitle,
+        filteredItems,
       }}
     >
       {children}

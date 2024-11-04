@@ -1,26 +1,42 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import Layout from "../../Components/Layout";
 import Card from "../../Components/Card";
 import ProductDetail from "../../Components/ProductDetail";
+import { ShoppinCardContext } from "../../Context";
 function Home() {
-  const [items, setItems] = useState(null);
+  const context = useContext(ShoppinCardContext);
 
-  useEffect(() => {
-    fetch("https://api.escuelajs.co/api/v1/products")
-      .then((response) => response.json())
-      .then((data) => setItems(data));
-  }, []);
+  const renderView = () => {
+    if (context.searchByTitle?.length > 0) {
+      if (context.filteredItems?.length > 0) {
+        return context.filteredItems.map((item) => (
+          <Card key={item.id} data={item} />
+        ));
+      } else {
+        return <div>No hay coincidencias</div>;
+      }
+    } else {
+      return context.items?.map((item) => <Card key={item.id} data={item} />);
+    }
+  };
 
   return (
     <Layout>
-      Home
+      <div className="flex items-center justify-center relative w-80 mb-4">
+        <h1 className="font-semibold text-xl">Exclusive Products</h1>
+      </div>
+      <input
+        className="rounded-lg border border-black w-80 p-4 mb-4 focus:outline-none"
+        type="text"
+        placeholder="Search a product"
+        onChange={(event) => context.setSearchByTitle(event.target.value)}
+      />
       <div className="grid place-items-center gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full max-w-screen-xl">
-        {items?.map((item) => (
-          <Card key={item.id} data={item} />
-        ))}
+        {renderView()}
       </div>
       <ProductDetail />
     </Layout>
   );
 }
+
 export default Home;
