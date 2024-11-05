@@ -21,11 +21,10 @@ Este es un proyecto de e-commerce desarrollado en React que permite a los usuari
 
 1. Clona el repositorio:
 
-   git clone https://github.com/tu-usuario/nombre-del-repositorio.git
+   git clone https://github.com/franco-barros/Market-multiverse
 Navega al directorio del proyecto:
 
 
-Copiar código
 cd nombre-del-repositorio
 Instala las dependencias:
 
