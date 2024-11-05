@@ -20,21 +20,21 @@ Este es un proyecto de e-commerce desarrollado en React que permite a los usuari
 ## Instalación
 
 1. Clona el repositorio:
-   ```bash
+
    git clone https://github.com/tu-usuario/nombre-del-repositorio.git
 Navega al directorio del proyecto:
 
-bash
+
 Copiar código
 cd nombre-del-repositorio
 Instala las dependencias:
 
-bash
+
 Copiar código
 npm install
 Ejecuta la aplicación:
 
-bash
+
 Copiar código
 npm start
 Uso
