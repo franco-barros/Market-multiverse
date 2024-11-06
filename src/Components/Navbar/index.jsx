@@ -18,6 +18,7 @@ const Navbar = () => {
             <NavLink
               onClick={() => context.setSearchByCategory()}
               to="/"
+              // buenisimo esto. no le la sabia tampoco 
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
               All
