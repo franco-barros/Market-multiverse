@@ -89,6 +89,10 @@ export const ShoppinCardProvider = ({ children }) => {
       setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory));
   }, [items, searchByTitle, searchByCategory]);
 
+  // parece que este contexto sabe hacer demasiadas cosas
+  // yo buscaria la forma de dividirlo en varios contextos mas pequeños
+  // o, como alternativa, puedes mover algunos métodos a customHooks (si necesitas algun estado)
+  // creo que lo de los hooks estaria bien para evitar abusar del contexto de react, ya que esta pensado para cositas pequeñas (creo que la performance no es tan buena con los contextos estos)
   return (
     <ShoppinCardContext.Provider
       value={{
