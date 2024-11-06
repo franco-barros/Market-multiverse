@@ -19,6 +19,8 @@ const CheckoutSideMenu = () => {
   );
   const handleCheckout = () => {
     const orderToAdd = {
+      // data o date?
+      // por que esta en concreto? quiza estaria bien moverla a una variable para poder nombrarla y dar mas contexto
       data: "01.02.24",
       products: context.cartProducts,
       totalProducts: context.cartProducts.length,
@@ -30,14 +32,14 @@ const CheckoutSideMenu = () => {
     context.setSearchByTitle(null);
   };
   return (
+    // nunca vi este elemento `aside`. buenisimo franquito
     <aside
-      className={`${
-        context.isCheckoutSideMenuOpen ? "flex" : "hidden"
-      } checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white max-w-lg w-full md:w-[35%] shadow-lg transform transition-all duration-500 ease-out ${
-        context.isCheckoutSideMenuOpen
-          ? "translate-x-0 scale-100 opacity-100"
-          : "translate-x-full scale-95 opacity-0"
-      }`}
+      // por que no poner los dos `context.isCheckoutSideMenuOpen ? ... : ...` juntos?
+      className={`
+          ${ context.isCheckoutSideMenuOpen ? "flex" : "hidden"}
+          checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white max-w-lg w-full md:w-[35%] shadow-lg transform transition-all duration-500 ease-out
+          ${ context.isCheckoutSideMenuOpen ? "translate-x-0 scale-100 opacity-100" : "translate-x-full scale-95 opacity-0"}
+        `}
     >
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">My order</h2>
