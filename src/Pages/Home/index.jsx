@@ -7,6 +7,8 @@ function Home() {
   const context = useContext(ShoppinCardContext);
 
   const renderView = () => {
+    // por que no en el mismo render de abajo?
+    // o en varios componentes distintos
     if (context.filteredItems?.length > 0) {
       return context.filteredItems.map((item) => (
         <Card key={item.id} data={item} />
