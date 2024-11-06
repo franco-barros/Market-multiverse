@@ -3,6 +3,7 @@ import React, { memo } from "react";
 
 const OrderCard = memo((props) => {
   const { id, title, imageUrl, price, handleDelete } = props;
+  // creo que este `renderXMarkIcon` no esta siendo asignado. Es intencional?
   let renderXMarkIcon;
   if (handleDelete) {
     <XMarkIcon
