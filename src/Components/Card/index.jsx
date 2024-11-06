@@ -18,11 +18,13 @@ const Card = (data) => {
     context.closeProductDetail();
   };
 
+  // esto suena a un nuevo componente
   const renderIcon = (id) => {
     const isInCart =
       context.cartProducts.filter((product) => product.id === id).length > 0;
 
     if (isInCart) {
+      // aqui se repiten algunas clases, quiza estaria bien meter un componente con estilos?
       return (
         <div className="absolute top-0 right-0 flex justify-center items-center w-8 h-8 sm:w-7 sm:h-7 md:w-6 md:h-6 lg:w-8 lg:h-8 bg-green-500 rounded-full m-2 p-1 shadow-lg transform transition-transform duration-200 hover:scale-110">
           <CheckIcon className="w-full h-full text-white" />
