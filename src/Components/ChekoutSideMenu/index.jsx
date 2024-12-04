@@ -18,8 +18,15 @@ const CheckoutSideMenu = () => {
     [context.cartProducts]
   );
   const handleCheckout = () => {
+    const newDate = new Date();
+    const Day = newDate.getDate().toString().padStart(2, "0");
+    const Month = newDate.getMonth() + 1;
+    const Year = newDate.getFullYear();
+    const DateToday = `${Day}/${Month}/${Year}`;
+    console.log(DateToday);
+
     const orderToAdd = {
-      data: "01.02.24",
+      date: DateToday,
       products: context.cartProducts,
       totalProducts: context.cartProducts.length,
       totalPrice: totalPrice(context.cartProducts),
@@ -40,7 +47,7 @@ const CheckoutSideMenu = () => {
       }`}
     >
       <div className="flex justify-between items-center p-6">
-        <h2 className="font-medium text-xl">My order</h2>
+        <h2 className="font-medium text-xl"> Order</h2>
         <div>
           <XMarkIcon
             onClick={() => context.closeCheckoutSideMenu()}
